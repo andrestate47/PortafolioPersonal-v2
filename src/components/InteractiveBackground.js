@@ -1,15 +1,22 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function InteractiveBackground({ isMuted }) {
   const videoRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Sync mute state with video element
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
-      
-      // Attempt play when unmuted to handle autoplay policy restrictions
       if (!isMuted) {
         videoRef.current.play().catch(err => console.log("Audio play prevented:", err));
       }
@@ -31,7 +38,9 @@ export default function InteractiveBackground({ isMuted }) {
           height: "100%",
           objectFit: "cover",
           pointerEvents: "none",
-          clipPath: "inset(0 18.75% 0 18.75%)"
+          // On desktop: clip the baked-in black sidebars from the video file
+          // On mobile: objectFit cover handles framing naturally
+          clipPath: isMobile ? "none" : "inset(0 18.75% 0 18.75%)"
         }}
       />
     </div>

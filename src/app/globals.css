@@ -284,7 +284,7 @@ a, button, .btn, [role="button"], input[type="submit"] {
 @media (max-width: 768px) {
   /* --- Timeline layout --- */
   .timeline-container {
-    padding: 7rem 1rem 1.5rem 2.8rem;
+    padding: 4rem 1rem 1.5rem 2.8rem;
   }
 
   .timeline-container::before {
@@ -349,13 +349,13 @@ a, button, .btn, [role="button"], input[type="submit"] {
   background-color: var(--background);
 }
 
-/* On portrait mobile, shift the video lower so it centers on the room */
+/* On portrait mobile: full-bleed hero video from navbar to ~70vh */
 @media (max-width: 768px) {
   .interactive-bg {
-    width: 200vw;      /* wider to fill since video is 16:9 on 9:16 screen */
-    height: 56.25vw;   /* maintain 16:9 ratio based on width */
-    min-height: 45vh;
-    top: 45vh;
+    width: 100vw;
+    height: 70vh;
+    top: 35vh;   /* center at 35vh → spans 0vh to 70vh */
+    min-height: unset;
   }
 }
 
