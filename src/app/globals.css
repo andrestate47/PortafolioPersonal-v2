@@ -514,46 +514,45 @@ a, button, .btn, [role="button"], input[type="submit"] {
 @media (max-width: 768px) {
   .retro-window {
     width: 96%;
-    max-height: calc(100vh - 5.5rem);
+    max-height: calc(100dvh - 6.5rem);
     box-shadow: 3px 3px 0px var(--primary);
   }
 
   .window-overlay {
-    padding: 0.4rem;
-    align-items: flex-start;
-    padding-top: 4rem; /* clear the fixed navbar */
+    padding: 0.5rem;
+    align-items: center; /* Center vertically to clear top/bottom browser bars */
   }
 
   .window-body {
-    padding: 0.75rem;
-    padding-bottom: 2.5rem; /* Extra bottom padding so buttons aren't cut off */
-    font-size: 0.85rem;
+    padding: 0.6rem;
+    padding-bottom: 2rem; /* Safe padding for bottom buttons */
+    font-size: 0.82rem;
   }
 
   /* Compress spaces between text/headers in the modal to make it fit */
   .window-body h3 {
-    margin-top: 0.5rem !important;
+    margin-top: 0.4rem !important;
     margin-bottom: 0.1rem !important;
-    font-size: 1.15rem !important;
+    font-size: 1.1rem !important;
   }
 
   .window-body p {
-    margin-bottom: 0.6rem !important;
-    line-height: 1.4 !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.35 !important;
   }
 
   .window-body h4 {
-    margin-bottom: 0.3rem !important;
+    margin-bottom: 0.2rem !important;
   }
 
   .window-body .window-tag-container {
-    margin: 0.5rem 0 1rem 0 !important;
+    margin: 0.3rem 0 0.6rem 0 !important;
     gap: 0.3rem !important;
   }
 
   .window-body hr, 
   .window-body div[style*="border-bottom"] {
-    margin-bottom: 0.6rem !important;
+    margin-bottom: 0.4rem !important;
   }
 
   .window-header {
