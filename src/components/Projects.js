@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
-  const [activeTab, setActiveTab] = useState("image"); // "image" or "video"
+  const [activeTab, setActiveTab] = useState("image");
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
+  const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
     if (activeProject) {
@@ -79,7 +80,8 @@ export default function Projects() {
 
   const handleOpenProject = (proj) => {
     setActiveProject(proj);
-    setActiveTab("image"); // Always display the image first
+    setActiveTab("image");
+    setVideoError(false);
     if (proj.video) {
       setSelectedVideoUrl(proj.video);
     } else {
@@ -91,11 +93,13 @@ export default function Projects() {
     setActiveProject(null);
     setActiveTab("image");
     setSelectedVideoUrl(null);
+    setVideoError(false);
   };
 
   const handleSelectGalleryVideo = (url) => {
     setSelectedVideoUrl(url);
-    setActiveTab("video"); // Automatically switch to video tab to preview it
+    setVideoError(false);
+    setActiveTab("video");
   };
 
   // SVG Pixel Folder Icon
@@ -165,16 +169,49 @@ export default function Projects() {
                 {/* Retro Screen Player Container */}
                 <div className="retro-media-player crt-effect">
                   {activeTab === "video" && selectedVideoUrl ? (
-                    <video
-                      key={selectedVideoUrl}
-                      src={selectedVideoUrl}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      className="retro-video"
-                    />
+                    videoError ? (
+                      // Fallback when video file doesn't exist on this server
+                      <div style={{
+                        width: "100%",
+                        height: "220px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: "0.75rem",
+                        color: "var(--primary)",
+                        fontFamily: "var(--font-pixel)",
+                        background: "#000",
+                        textAlign: "center",
+                        padding: "1rem"
+                      }}>
+                        <span style={{ fontSize: "2rem" }}>📼</span>
+                        <span style={{ fontSize: "1.1rem" }}>VIDEO DEMO</span>
+                        <span style={{ fontSize: "0.85rem", color: "#888", fontFamily: "var(--font-mono)" }}>
+                          No disponible en versión demo.<br/>Contáctame para una demostración en vivo.
+                        </span>
+                        <a
+                          href="#contact"
+                          className="btn"
+                          style={{ fontSize: "0.85rem", padding: "0.3rem 0.8rem", marginTop: "0.5rem" }}
+                          onClick={handleCloseProject}
+                        >
+                          Contactar
+                        </a>
+                      </div>
+                    ) : (
+                      <video
+                        key={selectedVideoUrl}
+                        src={selectedVideoUrl}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="retro-video"
+                        onError={() => setVideoError(true)}
+                      />
+                    )
                   ) : (
                     <img
                       src={activeProject.image}
