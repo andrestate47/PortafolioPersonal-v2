@@ -1,21 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 export default function Projects() {
+  const [mounted, setMounted] = useState(false);
   const [activeProject, setActiveProject] = useState(null);
   const [activeTab, setActiveTab] = useState("image");
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [videoError, setVideoError] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (activeProject) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     }
     return () => {
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, [activeProject]);
 
@@ -138,8 +147,8 @@ export default function Projects() {
           ))}
         </div>
 
-        {/* Windows 95 Style Modal Window */}
-        {activeProject && (
+        {/* Windows 95 Style Modal Window rendered in Portal */}
+        {mounted && activeProject && createPortal(
           <div className="window-overlay" onClick={handleCloseProject}>
             <div
               className="retro-window"
@@ -341,7 +350,8 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         )}
       </div>
     </section>
