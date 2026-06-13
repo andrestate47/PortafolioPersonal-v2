@@ -86,7 +86,6 @@ a {
   margin: 0 auto;
   padding: 5.5rem 2rem 2rem 3rem; /* Extra top padding to clear fixed navbar */
   position: relative;
-  z-index: 10;
 }
 
 /* The vertical dashed line */
@@ -515,7 +514,7 @@ a, button, .btn, [role="button"], input[type="submit"] {
 @media (max-width: 768px) {
   .retro-window {
     width: 96%;
-    max-height: 92vh;
+    max-height: calc(100vh - 5.5rem);
     box-shadow: 3px 3px 0px var(--primary);
   }
 

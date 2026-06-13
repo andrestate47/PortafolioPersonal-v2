@@ -9,6 +9,7 @@ export default function Projects() {
   const [activeTab, setActiveTab] = useState("image");
   const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
   const [videoError, setVideoError] = useState(false);
+  const [mediaLoading, setMediaLoading] = useState(true);
 
   useEffect(() => {
     setMounted(true);
@@ -91,6 +92,7 @@ export default function Projects() {
     setActiveProject(proj);
     setActiveTab("image");
     setVideoError(false);
+    setMediaLoading(true);
     if (proj.video) {
       setSelectedVideoUrl(proj.video);
     } else {
@@ -108,6 +110,7 @@ export default function Projects() {
   const handleSelectGalleryVideo = (url) => {
     setSelectedVideoUrl(url);
     setVideoError(false);
+    setMediaLoading(true);
     setActiveTab("video");
   };
 
@@ -176,7 +179,24 @@ export default function Projects() {
               {/* Window Content */}
               <div className="window-body">
                 {/* Retro Screen Player Container */}
-                <div className="retro-media-player crt-effect">
+                <div className="retro-media-player crt-effect" style={{ minHeight: "180px", position: "relative" }}>
+                  {/* Loading Indicator */}
+                  {mediaLoading && !videoError && (
+                    <div style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      color: "var(--primary)",
+                      fontFamily: "var(--font-pixel)",
+                      zIndex: 2,
+                      textAlign: "center"
+                    }}>
+                      <div className="win95-logo-flag" style={{ fontSize: "2rem", marginBottom: "0.5rem" }}>⏳</div>
+                      <div style={{ fontSize: "0.9rem", animation: "pulse 1.5s infinite" }}>Cargando...</div>
+                    </div>
+                  )}
+
                   {activeTab === "video" && selectedVideoUrl ? (
                     videoError ? (
                       // Fallback when video file doesn't exist on this server
@@ -218,7 +238,9 @@ export default function Projects() {
                         playsInline
                         preload="metadata"
                         className="retro-video"
-                        onError={() => setVideoError(true)}
+                        style={{ opacity: mediaLoading ? 0 : 1, transition: "opacity 0.3s" }}
+                        onCanPlay={() => setMediaLoading(false)}
+                        onError={() => { setVideoError(true); setMediaLoading(false); }}
                       />
                     )
                   ) : (
@@ -227,6 +249,9 @@ export default function Projects() {
                       alt={activeProject.title}
                       loading="lazy"
                       className="retro-image"
+                      style={{ opacity: mediaLoading ? 0 : 1, transition: "opacity 0.3s" }}
+                      onLoad={() => setMediaLoading(false)}
+                      onError={() => setMediaLoading(false)}
                     />
                   )}
                 </div>
@@ -236,13 +261,23 @@ export default function Projects() {
                   <div className="media-toggle-bar">
                     <button
                       className={`media-toggle-btn ${activeTab === "image" ? "active" : ""}`}
-                      onClick={() => setActiveTab("image")}
+                      onClick={() => {
+                        if (activeTab !== "image") {
+                          setMediaLoading(true);
+                          setActiveTab("image");
+                        }
+                      }}
                     >
                       [📷 Imagen]
                     </button>
                     <button
                       className={`media-toggle-btn ${activeTab === "video" ? "active" : ""}`}
-                      onClick={() => setActiveTab("video")}
+                      onClick={() => {
+                        if (activeTab !== "video") {
+                          setMediaLoading(true);
+                          setActiveTab("video");
+                        }
+                      }}
                     >
                       [🎬 Video Demo]
                     </button>
