@@ -8,13 +8,15 @@ export default function About() {
         
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
           <p>
-            Soy un <strong>Programador Frontend con más de 5 años de experiencia</strong> construyendo software enfocado en PyMES. 
-            Me apasiona crear interfaces modernas, minimalistas y sistemas escalables que realmente aporten valor.
+            Soy <strong>Desarrollador Front-End +5 años</strong>. Especializado en la creación de páginas web, automatizaciones y soluciones a medida para PyMEs y emprendedores.
           </p>
           
           <p>
-            Actualmente trabajo como Freelancer, ayudando a empresas a crecer su presencia digital y en la captación 
-            de clientes mediante tecnología a medida.
+            Mi objetivo es ayudar a las empresas a crecer mediante tecnología moderna, rápida y eficiente, construyendo herramientas que mejoren su presencia digital y faciliten la captación de clientes.
+          </p>
+
+          <p>
+            Actualmente trabajo como Freelancer, desarrollando soluciones enfocadas en aportar valor y resultados reales.
           </p>
         </div>
       </div>
