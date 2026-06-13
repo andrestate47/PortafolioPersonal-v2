@@ -44,9 +44,4 @@ next-env.d.ts
 /.agents/
 /skills-lock.json
 
-# large project demo videos (serve from CDN or VPS, not git)
-/public/Robotinacrntralvideo.mp4
-/public/analizeervideo.mp4
-/public/chronosvideo.mp4
-/public/cobranzavideo.mp4
-/public/codeMarket.mp4
+# large project demo videos (removed exclusion to allow Vercel hosting)
