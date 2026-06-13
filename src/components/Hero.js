@@ -6,6 +6,7 @@ export default function Hero() {
     "Desarrollador",
     "Front-end",
     "Automatización",
+    "Experto en IA",
     "desarrollo a medida"
   ];
 
