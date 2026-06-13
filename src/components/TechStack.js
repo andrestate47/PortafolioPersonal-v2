@@ -49,7 +49,7 @@ export default function TechStack() {
                 e.currentTarget.style.borderColor = "var(--border)";
               }}
             >
-              <img src={t.icon} alt={t.name} className="retro-logo" />
+              <img src={t.icon} alt={t.name} className="retro-logo" loading="lazy" />
               <span>{t.name}</span>
             </div>
           ))}

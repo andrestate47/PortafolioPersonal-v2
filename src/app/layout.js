@@ -18,13 +18,10 @@ export const metadata = {
   description: "Portafolio de Andrés Alejandro Figueroa Zamora - Desarrollador Front-end y Automatización",
 };
 
-import InteractiveBackground from "../components/InteractiveBackground";
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning className={`${vt323.variable} ${spaceMono.variable}`}>
       <body>
-        <InteractiveBackground />
         {children}
       </body>
     </html>

@@ -7,15 +7,14 @@ export default function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
-    // Check system preference on load
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
-      setTheme("light");
-    }
+    const savedTheme = localStorage.getItem("portfolio-theme") || "dark";
+    setTheme(savedTheme);
   }, []);
 
   useEffect(() => {
     if (mounted) {
       document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("portfolio-theme", theme);
     }
   }, [theme, mounted]);
 

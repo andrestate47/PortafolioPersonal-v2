@@ -30,18 +30,18 @@ export default function Hero() {
           </div>
         </div>
         
-        <h1 style={{ fontSize: "2rem", marginBottom: "1rem", minHeight: "3rem" }}>
+        <h1 className="retro-text-outline" style={{ fontSize: "2rem", marginBottom: "1rem", minHeight: "3rem" }}>
           {"> "} 
           <Typewriter phrases={phrases} />
         </h1>
         
-        <p style={{ maxWidth: "500px", margin: "0 auto 2rem auto", opacity: 0.8 }}>
+        <p className="retro-text-outline" style={{ maxWidth: "500px", margin: "0 auto 2rem auto", opacity: 0.9, fontWeight: "bold" }}>
           Especialista en desarrollo Front-end y automatización de procesos, construyendo software moderno, rápido y efectivo.
         </p>
 
         <div style={{ display: "flex", gap: "1rem", justifyItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
           <a href="#contact" className="btn">Contactar</a>
-          <a href="#projects" className="btn" style={{ background: "transparent", color: "var(--foreground)", borderColor: "var(--border)", boxShadow: "4px 4px 0px var(--border)" }}>Ver Proyectos</a>
+          <a href="#projects" className="btn" style={{ background: "rgba(0,0,0,0.45)", color: "#ffffff", borderColor: "rgba(255,255,255,0.75)", boxShadow: "4px 4px 0px rgba(255,255,255,0.3)" }}>Ver Proyectos</a>
         </div>
       </div>
     </section>

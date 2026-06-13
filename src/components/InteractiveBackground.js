@@ -1,48 +1,39 @@
 "use client";
 import { useEffect, useRef } from "react";
 
-export default function InteractiveBackground() {
-  const bgRef = useRef(null);
+export default function InteractiveBackground({ isMuted }) {
+  const videoRef = useRef(null);
 
+  // Sync mute state with video element
   useEffect(() => {
-    let animationFrameId;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
-    const handleMouseMove = (e) => {
-      // Calculate position relative to center (-1 to 1)
-      targetX = (e.clientX / window.innerWidth - 0.5) * -40;
-      targetY = (e.clientY / window.innerHeight - 0.5) * -40;
-    };
-
-    const animate = () => {
-      // Smooth interpolation
-      currentX += (targetX - currentX) * 0.1;
-      currentY += (targetY - currentY) * 0.1;
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
       
-      if (bgRef.current) {
-        // Use translate3d for GPU hardware acceleration, maintaining both -50% centerings
-        bgRef.current.style.transform = `translate(-50%, -50%) translate3d(${currentX}px, ${currentY}px, 0)`;
+      // Attempt play when unmuted to handle autoplay policy restrictions
+      if (!isMuted) {
+        videoRef.current.play().catch(err => console.log("Audio play prevented:", err));
       }
-      
-      animationFrameId = requestAnimationFrame(animate);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    animate();
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+    }
+  }, [isMuted]);
 
   return (
-    <div 
-      ref={bgRef}
-      className="interactive-bg"
-    />
+    <div className="interactive-bg">
+      <video
+        ref={videoRef}
+        src="/retro.mp4"
+        autoPlay
+        loop
+        playsInline
+        muted={isMuted}
+        preload="none"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          pointerEvents: "none",
+          clipPath: "inset(0 18.75% 0 18.75%)"
+        }}
+      />
+    </div>
   );
 }

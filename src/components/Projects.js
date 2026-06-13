@@ -1,48 +1,102 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Projects() {
   const [activeProject, setActiveProject] = useState(null);
+  const [activeTab, setActiveTab] = useState("image"); // "image" or "video"
+  const [selectedVideoUrl, setSelectedVideoUrl] = useState(null);
+
+  useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeProject]);
 
   const projects = [
     {
       id: "robotina",
       title: "RobotinaCentral.com",
-      role: "Fundador & Desarrollador",
+      role: "Co-Fundador & Desarrollador",
       desc: "CRM con Inteligencia Artificial diseñado específicamente para optimizar las ventas y gestión de clientes a través de WhatsApp.",
-      details: "Sistema avanzado integrado con WhatsApp Web y APIs oficiales que lee conversaciones en tiempo real, califica leads automáticamente usando GPT y gestiona reservas mediante un sistema calendarizado interno. Cuenta con un dashboard de administración en tiempo real con estadísticas de conversión, sincronización con bases de datos SQL y envío automatizado de notificaciones.",
-      tags: ["React", "Node.js", "Supabase", "OpenAI API", "WebSockets"],
-      link: "https://robotinacentral.com"
+      details: "Sistema de automatización de WhatsApp con CRM, hecho con n8n, Supabase, React, Next.js. Utiliza Inteligencia Artificial para calificar leads y funciona para procesar clientes de una manera más eficiente gracias a la asistente Robotina y al dashboard de centralización de datos.",
+      tags: ["React", "Next.js", "n8n", "Supabase", "OpenAI API", "WebSockets"],
+      link: "https://robotinacentral.com/",
+      image: "/Robotina central landing.png",
+      video: "/Robotinacrntralvideo.mp4"
     },
     {
       id: "nova",
-      title: "Nova AI Software",
-      role: "Fundador & Desarrollador",
-      desc: "Software de automatización e Inteligencia artificial para empresas, enfocado en escalar la captación de clientes.",
-      details: "Motor automatizado de scraping de datos geográficos e integración con modelos de lenguaje. Extrae potenciales leads de plataformas como Google Maps, analiza su perfil corporativo en redes sociales usando IA, y genera secuencias de contacto altamente personalizadas. Aumenta la prospección B2B fría en más del 400% de manera orgánica.",
-      tags: ["Next.js", "Python", "Cheerio", "Docker", "LangChain"],
-      link: "#"
+      title: "Analizador de Gráficos",
+      role: "Co-Fundador & Desarrollador",
+      desc: "Software de análisis de gráficos de trading automatizado mediante Inteligencia Artificial.",
+      details: "Analizador de gráficos de Mercado para dar una referencia de estrategia para los traders, con métricas avanzadas y un analizador de gráficos con data real de mercado en vivo.",
+      tags: ["Next.js", "Python", "AI", "TradingView API", "WebSockets"],
+      link: "https://robotina-ia.com/",
+      image: "/analizer.png",
+      video: "/analizeervideo.mp4"
     },
     {
       id: "caja",
-      title: "Control de Caja Chica",
-      role: "Desarrollador de Sistemas",
+      title: "App de Préstamos y Cobros",
+      role: "Desarrollador del Sistemas",
       desc: "Dashboard de contabilidad, administración de viáticos y finanzas internas para PyMEs.",
       details: "Aplicación administrativa de control financiero interno que permite a coleccionistas y administradores reportar gastos cotidianos en ruta. Implementa un sistema de validación doble (Admin-Colaborador) con filtros por rangos de fechas, balances acumulados en tiempo real y descarga de reportes contables auditables.",
       tags: ["React", "Express", "PostgreSQL", "TailwindCSS", "PDFKit"],
-      link: "#"
+      link: "#",
+      image: "/app de Prestamos-Cobros.png",
+      video: "/cobranzavideo.mp4"
+    },
+
+    {
+      id: "codemarket",
+      title: "CodeMarket",
+      role: "Fundador & Desarrollador",
+      desc: "Plataforma de comercio electrónico para scripts, productos digitales y servicios tecnológicos.",
+      details: "E-commerce diseñado específicamente para la venta y distribución automatizada de soluciones de software, automatizaciones de n8n, plantillas y servicios. Cuenta con sistema de autenticación de usuarios, pasarela de pago (checkout), panel de administración de productos y biblioteca de descargas seguras.",
+      tags: ["Next.js", "React", "TailwindCSS", "Node.js", "Stripe"],
+      link: "#",
+      image: "/codeMarkett.png",
+      video: "/codeMarket.mp4"
     },
     {
-      id: "rutas",
-      title: "Rutas del Día",
-      role: "Ingeniero de Automatización",
-      desc: "Algoritmo inteligente de optimización de rutas de cobro y entregas en tiempo real.",
-      details: "Sistema de optimización de geolocalización que filtra clientes activos en la ruta diaria según su frecuencia de pago (diaria, semanal, mensual). Excluye automáticamente a clientes con pagos adelantados y recalcula la ruta de Google Maps del colaborador mediante coordenadas en tiempo real para optimizar traslados.",
-      tags: ["JavaScript", "Google Maps API", "Redis", "CronJobs", "Leaflet"],
-      link: "#"
+      id: "unihub",
+      title: "Web-Chronos",
+      role: "Desarrollador Full Stack",
+      desc: "Landing page premium con diseño de alta gama para la exhibición y venta de relojes antiguos de colección.",
+      details: "Una web premium con el tema de relojes antiguos para una joyería, desarrollada con un diseño visualmente exquisito, transiciones suaves y micro-animaciones personalizadas que resaltan la exclusividad y elegancia de cada pieza de colección.",
+      tags: ["React", "Next.js", "TailwindCSS", "Framer Motion", "Vanilla CSS"],
+      link: "#",
+      image: "/cronoos.png",
+      video: "/chronosvideo.mp4"
     }
   ];
+
+  const handleOpenProject = (proj) => {
+    setActiveProject(proj);
+    setActiveTab("image"); // Always display the image first
+    if (proj.video) {
+      setSelectedVideoUrl(proj.video);
+    } else {
+      setSelectedVideoUrl(null);
+    }
+  };
+
+  const handleCloseProject = () => {
+    setActiveProject(null);
+    setActiveTab("image");
+    setSelectedVideoUrl(null);
+  };
+
+  const handleSelectGalleryVideo = (url) => {
+    setSelectedVideoUrl(url);
+    setActiveTab("video"); // Automatically switch to video tab to preview it
+  };
 
   // SVG Pixel Folder Icon
   const FolderIcon = () => (
@@ -65,14 +119,14 @@ export default function Projects() {
         <h2 style={{ fontSize: "1.8rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
           <span>[03]</span> Proyectos
         </h2>
-        
+
         {/* Retro Desktop Workspace */}
         <div className="desktop-workspace">
           {projects.map((proj) => (
-            <button 
-              key={proj.id} 
+            <button
+              key={proj.id}
               className={`desktop-icon ${activeProject?.id === proj.id ? 'selected' : ''}`}
-              onClick={() => setActiveProject(proj)}
+              onClick={() => handleOpenProject(proj)}
             >
               <FolderIcon />
               <span>{proj.title}</span>
@@ -82,9 +136,9 @@ export default function Projects() {
 
         {/* Windows 95 Style Modal Window */}
         {activeProject && (
-          <div className="window-overlay" onClick={() => setActiveProject(null)}>
-            <div 
-              className="retro-window" 
+          <div className="window-overlay" onClick={handleCloseProject}>
+            <div
+              className="retro-window"
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside
             >
               {/* Window Header */}
@@ -95,10 +149,10 @@ export default function Projects() {
                 <div className="window-controls">
                   <button className="window-btn" title="Minimizar">_</button>
                   <button className="window-btn" title="Maximizar">▢</button>
-                  <button 
-                    className="window-btn" 
-                    style={{ color: "var(--primary)" }} 
-                    onClick={() => setActiveProject(null)}
+                  <button
+                    className="window-btn"
+                    style={{ color: "var(--primary)" }}
+                    onClick={handleCloseProject}
                     title="Cerrar"
                   >
                     X
@@ -108,12 +162,85 @@ export default function Projects() {
 
               {/* Window Content */}
               <div className="window-body">
-                <h3 style={{ fontSize: "1.3rem", color: "var(--primary)", marginBottom: "0.2rem" }}>
+                {/* Retro Screen Player Container */}
+                <div className="retro-media-player crt-effect">
+                  {activeTab === "video" && selectedVideoUrl ? (
+                    <video
+                      key={selectedVideoUrl}
+                      src={selectedVideoUrl}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="none"
+                      className="retro-video"
+                    />
+                  ) : (
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title}
+                      loading="lazy"
+                      className="retro-image"
+                    />
+                  )}
+                </div>
+
+                {/* Media Toggle Navigation (Images & Video) */}
+                {activeProject.image && activeProject.video && (
+                  <div className="media-toggle-bar">
+                    <button
+                      className={`media-toggle-btn ${activeTab === "image" ? "active" : ""}`}
+                      onClick={() => setActiveTab("image")}
+                    >
+                      [📷 Imagen]
+                    </button>
+                    <button
+                      className={`media-toggle-btn ${activeTab === "video" ? "active" : ""}`}
+                      onClick={() => setActiveTab("video")}
+                    >
+                      [🎬 Video Demo]
+                    </button>
+                  </div>
+                )}
+
+                {/* Video Gallery Selector for projects with multiple videos */}
+                {activeProject.gallery && (
+                  <div className="retro-video-selector-container" style={{ marginTop: "1rem" }}>
+                    <label className="retro-select-label">&gt; Seleccionar Módulo:</label>
+                    <select
+                      value={selectedVideoUrl || ""}
+                      onChange={(e) => handleSelectGalleryVideo(e.target.value)}
+                      className="retro-select"
+                    >
+                      {activeProject.gallery.map((vid, idx) => (
+                        <option key={idx} value={vid.url}>
+                          {vid.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                <h3 style={{ fontSize: "1.3rem", color: "var(--primary)", marginTop: "1rem", marginBottom: "0.2rem" }}>
                   {activeProject.title}
                 </h3>
                 <p style={{ fontSize: "0.9rem", opacity: 0.7, marginBottom: "1rem", fontStyle: "italic" }}>
                   &gt; {activeProject.role}
                 </p>
+
+                {activeProject.link && activeProject.link !== "#" && (
+                  <div style={{ marginBottom: "1rem", fontFamily: "var(--font-mono)", fontSize: "0.9rem" }}>
+                    <span style={{ color: "var(--primary)" }}>&gt; Link: </span>
+                    <a
+                      href={activeProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "underline", color: "var(--foreground)", fontWeight: "bold" }}
+                    >
+                      {activeProject.link}
+                    </a>
+                  </div>
+                )}
 
                 <div style={{ borderBottom: "1px dashed var(--border)", marginBottom: "1rem" }}></div>
 
@@ -134,22 +261,22 @@ export default function Projects() {
 
                 <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", marginTop: "1rem" }}>
                   {activeProject.link !== "#" ? (
-                    <a 
-                      href={activeProject.link} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href={activeProject.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="btn"
                       style={{ fontSize: "1rem", padding: "0.4rem 1rem" }}
                     >
                       Ejecutar Sistema
                     </a>
                   ) : (
-                    <span 
-                      className="btn" 
-                      style={{ 
-                        fontSize: "1rem", 
-                        padding: "0.4rem 1rem", 
-                        opacity: 0.5, 
+                    <span
+                      className="btn"
+                      style={{
+                        fontSize: "1rem",
+                        padding: "0.4rem 1rem",
+                        opacity: 0.5,
                         cursor: "not-allowed",
                         borderColor: "var(--border)",
                         color: "var(--border)",
@@ -160,17 +287,17 @@ export default function Projects() {
                       Sistema Privado
                     </span>
                   )}
-                  <button 
-                    className="btn" 
-                    style={{ 
-                      fontSize: "1rem", 
-                      padding: "0.4rem 1rem", 
-                      background: "transparent", 
-                      color: "var(--foreground)", 
-                      borderColor: "var(--border)", 
-                      boxShadow: "4px 4px 0px var(--border)" 
+                  <button
+                    className="btn"
+                    style={{
+                      fontSize: "1rem",
+                      padding: "0.4rem 1rem",
+                      background: "transparent",
+                      color: "var(--foreground)",
+                      borderColor: "var(--border)",
+                      boxShadow: "4px 4px 0px var(--border)"
                     }}
-                    onClick={() => setActiveProject(null)}
+                    onClick={handleCloseProject}
                   >
                     Cerrar ventana
                   </button>
@@ -183,3 +310,4 @@ export default function Projects() {
     </section>
   );
 }
+
