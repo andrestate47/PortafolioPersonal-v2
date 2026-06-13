@@ -598,7 +598,7 @@ a, button, .btn, [role="button"], input[type="submit"] {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 4rem 2rem 5rem 2rem;
+  padding: 2rem;
   z-index: 99999;
   font-family: 'Times New Roman', Times, serif;
   user-select: none;
@@ -618,8 +618,9 @@ a, button, .btn, [role="button"], input[type="submit"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: auto;
+  justify-content: center;
   text-align: center;
+  flex-grow: 1;
 }
 
 .win95-logo-flag {
@@ -670,6 +671,7 @@ a, button, .btn, [role="button"], input[type="submit"] {
 .win95-progress-section {
   width: min(100%, 350px);
   margin-top: auto;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
