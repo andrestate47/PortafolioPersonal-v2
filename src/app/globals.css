@@ -594,12 +594,6 @@ a, button, .btn, [role="button"], input[type="submit"] {
   right: 0;
   bottom: 0;
   background: linear-gradient(to bottom, #5d97cc 0%, #ffffff 50%, #b8cddc 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; /* Center everything vertically as a single group */
-  gap: 2.5rem; /* Gap between logo/brand and progress bar */
-  padding: 2rem;
   z-index: 99999;
   font-family: 'Times New Roman', Times, serif;
   user-select: none;
@@ -616,10 +610,15 @@ a, button, .btn, [role="button"], input[type="submit"] {
 }
 
 .win95-logo-container {
+  position: absolute;
+  bottom: calc(50% + 2.5rem); /* Positions logo and brand text completely in the upper half */
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  width: 100%;
 }
 
 .win95-logo-flag {
@@ -666,9 +665,13 @@ a, button, .btn, [role="button"], input[type="submit"] {
   color: #4a4a4a;
 }
 
-/* Win95 style progress bar centered right under logo */
+/* Win95 style progress bar centered exactly in the middle of the screen */
 .win95-progress-section {
-  width: min(100%, 350px);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90%, 350px);
   display: flex;
   flex-direction: column;
   align-items: center;
