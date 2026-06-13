@@ -36,7 +36,7 @@ export default function Hero() {
         </h1>
         
         <p className="retro-text-outline" style={{ maxWidth: "500px", margin: "0 auto 1.5rem auto", opacity: 0.9, fontWeight: "bold", fontSize: "clamp(0.85rem, 2.5vw, 1.05rem)", padding: "0 0.5rem" }}>
-          Especialista en desarrollo Front-end y automatización de procesos, construyendo software moderno, rápido y efectivo.
+          Desarrollador Front-End especializado en automatización y software a medida. Construyendo soluciones modernas para empresas y emprendedores.
         </p>
 
         <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", padding: "0 0.5rem" }}>
