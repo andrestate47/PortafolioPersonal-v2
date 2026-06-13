@@ -82,7 +82,7 @@ export default function Projects() {
       desc: "Landing page premium con diseño de alta gama para la exhibición y venta de relojes antiguos de colección.",
       details: "Una web premium con el tema de relojes antiguos para una joyería, desarrollada con un diseño visualmente exquisito, transiciones suaves y micro-animaciones personalizadas que resaltan la exclusividad y elegancia de cada pieza de colección.",
       tags: ["React", "Next.js", "TailwindCSS", "Framer Motion", "Vanilla CSS"],
-      link: "#",
+      link: "https://chronos-eta.vercel.app/",
       image: "/cronoos.png",
       video: "/chronosvideo.mp4"
     }
