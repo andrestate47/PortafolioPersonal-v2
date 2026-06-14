@@ -250,6 +250,11 @@ a, button, .btn, [role="button"], input[type="submit"] {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' stroke='%23000000' stroke-width='2' d='M8 2v9H6V5H4v11h2v2h2v2h8v-2h2v-2h2V8h-2v3h-2V6h-2v5h-2V4H8z'/%3E%3C/svg%3E"), pointer !important;
 }
 
+/* Override custom cursor for disabled/not-allowed elements */
+button:disabled, .btn[disabled], .btn.disabled, [style*="cursor: not-allowed"], [style*="cursor:not-allowed"] {
+  cursor: not-allowed !important;
+}
+
 /* Tech Stack Logo Retro Filter */
 .retro-logo {
   filter: grayscale(100%) sepia(100%) hue-rotate(350deg) saturate(500%) brightness(0.9) contrast(1.2);

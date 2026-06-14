@@ -24,9 +24,16 @@ export default function Hero() {
             position: "relative",
             backgroundColor: "var(--secondary)"
           }}>
-            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "clamp(3.5rem, 10vw, 5rem)", color: "var(--primary)" }}>
-              👾
-            </div>
+            <img 
+              src="/avatar_retro.png" 
+              alt="Andrés Figueroa Avatar"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                imageRendering: "pixelated"
+              }}
+            />
           </div>
         </div>
         

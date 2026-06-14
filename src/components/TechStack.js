@@ -77,7 +77,20 @@ export default function TechStack() {
               e.currentTarget.style.borderColor = "var(--border)";
             }}
           >
-            <div className="retro-logo" style={{ display: "flex", alignItems: "center", justifyContent: "center", fontSize: "2rem" }}>⚙️</div>
+            <svg 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              className="retro-logo"
+            >
+              <rect x="3" y="3" width="6" height="6" rx="1" />
+              <rect x="15" y="15" width="6" height="6" rx="1" />
+              <rect x="15" y="3" width="6" height="6" rx="1" />
+              <path d="M9 6h6M9 6v12h6" />
+            </svg>
             <span>n8n</span>
           </div>
         </div>
