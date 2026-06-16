@@ -25,7 +25,7 @@ export default function Hero() {
             backgroundColor: "var(--secondary)"
           }}>
             <img 
-              src="/avatar_retro.png" 
+              src="/yo-removebg-preview.png" 
               alt="Andrés Figueroa Avatar"
               style={{
                 width: "100%",
