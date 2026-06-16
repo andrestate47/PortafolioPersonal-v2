@@ -27,7 +27,7 @@ export default function Contact() {
           </a>
 
           <div style={{ display: "flex", gap: "1rem", justifyContent: "center", marginTop: "1rem" }}>
-            <a href="https://linkedin.com/in/andres-figueroa" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline", color: "var(--primary)" }}>
+            <a href="https://www.linkedin.com/in/andrés-alejandro-figueroa-zamora-024878232" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline", color: "var(--primary)" }}>
               LinkedIn
             </a>
             <span>|</span>
